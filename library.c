@@ -23,7 +23,7 @@ void rentBook(string name);
 void searchByAuthor(string author);
 void printLibrary(string nothing);
 
-int main()
+int main() //this is what comments looks like
 {
     printf("Welcome to the library!!\n\n"); //welcome message
 
@@ -37,7 +37,7 @@ int main()
         printf("4). Print library.\n");
         printf("5). Leave library\n\n");
 
-        int input = get_int("");
+        int input = get_int(""); //get input
         printf("\n");
 
         if (input == 5) //leave library
@@ -132,38 +132,38 @@ int bookExists(string name)
 
 void returnBook(string name)
 {
-    int newBook = bookExists(name);
+    int newBook = bookExists(name); //check book exists
 
-    if (newBook >= 0)
+    if (newBook >= 0) //if it does exist add 1 copy
     {
         books[newBook].copies++;
     }
-    else
+    else //if book doesn't exist check if they want to add it to our library
     {
         bool answer = true;
 
         do
         {
-            string getAnswer = get_string("We couldn't find that book in our library. Do you want to add it? (y / n): ");
+            string getAnswer = get_string("We couldn't find that book in our library. Do you want to add it? (y / n): "); //ask if we want to add a book to the library
 
-            if (strcmp(getAnswer, "y") == 0)
+            if (strcmp(getAnswer, "y") == 0) //if yes then continue
             {
                 answer = false;
             }
-            else if (strcmp(getAnswer, "n") == 0)
+            else if (strcmp(getAnswer, "n") == 0) //if now then brake
             {
                 return;
             }
         } while(answer);
 
-        addBook(name);
+        addBook(name); //add book if yes
     }
 }
 
 void addBook(string name)
 {
     int newBook;
-    for (int i = 0; i < MAX; i++)
+    for (int i = 0; i < MAX; i++) //check if book exists
     {
         if (books[i].title == NULL)
         {
@@ -171,7 +171,7 @@ void addBook(string name)
         }
     }
 
-    books[newBook].title = name;
+    books[newBook].title = name; //add book if it 
     books[newBook].author = get_string("Please input the author of the book. : ");
     books[newBook].copies = 1;
 
@@ -181,10 +181,10 @@ void addBook(string name)
 void rentBook(string name)
 {
     int bookExistsInt = bookExists(name);
-    if (bookExistsInt >= 0)
+    if (bookExistsInt >= 0) //if book exists subtract 1 copy
     {
         books[bookExistsInt].copies--;
-        if (books[bookExistsInt].copies == 0)
+        if (books[bookExistsInt].copies == 0) //if their are are no copies left make the array empty
         {
             books[bookExistsInt].title = NULL;
             books[bookExistsInt].author = NULL;
